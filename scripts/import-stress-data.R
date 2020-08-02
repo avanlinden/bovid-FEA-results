@@ -22,3 +22,7 @@ elemStress <-
 
 #write combined stress data to csv
 write_csv(elemStress, path = here("clean-data", "element-stress.csv"))
+
+#add giant csv to gitignore
+
+use_git_ignore("clean-data/element-stress.csv")

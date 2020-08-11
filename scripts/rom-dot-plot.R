@@ -31,7 +31,7 @@ colors <- c(viridisLite::viridis(n = 2, begin = 0.1, end = 0.8), 'grey')
 bhDeg %>% 
   right_join(imDeg, by = c("fsu", "load")) %>%
   mutate(fsu = factor(fsu, levels = c("C2-C3", "C4-C5", "C6-C7")),
-         load = factor(load, levels = c("flex", "lateral", "axial", "extend"))) %>% 
+         load = factor(load, levels = c("flex", "lateral", "axial", "extend"), labels = c("flexion (z)", "lateral bending (y)", "axial rotation (x)", "extension (z)"))) %>% 
   ggplot() +
     geom_segment(aes(x = load, xend = load, y = bhMax, yend = imMax, color = colors[3])) +
     geom_point(aes(x = load, y = bhMax, color = colors[1]), size = 3) +

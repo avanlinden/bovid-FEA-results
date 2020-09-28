@@ -35,3 +35,5 @@ source(here("scripts/stress-dist-plots.R"))
 source(here("scripts/tidy-euler-angle-data.R"))
 
 source(here("scripts/rom-dot-plot.R"))
+
+# "scripts/lig-curves.R" used to interpolate and average ligament force displacement curves from DeVries 2015; not used for post-experiment data analysis

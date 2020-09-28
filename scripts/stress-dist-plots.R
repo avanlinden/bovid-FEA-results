@@ -4,7 +4,7 @@
 q99StressDistRotationPlot <- stressQ99 %>% 
   dplyr::filter(load != 'compress') %>%
   mutate(load = factor(load, levels = c("axial", "lateral", "flex", "extend"), labels = c("axial rotation", "lateral bending", "flexion", "extension"))) %>% 
-  ggplot(aes(x = effStress))
+  ggplot(aes(x = effStress, after_stat(count)))
 
 
 
@@ -23,7 +23,7 @@ stressDistRotationPlot <- q99StressDistRotationPlot +
       axis.text.x = element_text(size = 8),
       axis.text.y = element_text(size = 8)
     ) +
-    scale_y_continuous(breaks = c(0.0, 1.0, 2.0)) +
+    #scale_y_continuous(breaks = c(0.0, 1.0, 2.0)) +
     scale_x_continuous(breaks = c(0, 2, 4, 6, 8, 10))
 
 stressDistRotationPlot
@@ -32,7 +32,7 @@ ggsave("rotation-stress-dist-plot.pdf", plot = last_plot(), path = here("figures
 
 q99StressDistCompressPlot <- stressQ99 %>% 
   dplyr::filter(load == 'compress') %>% 
-  ggplot(aes(x = effStress))
+  ggplot(aes(x = effStress, after_stat(count)))
 
 stressDistCompressionPlot <- q99StressDistCompressPlot +
   geom_density(aes(fill = species, colour = species), alpha = 0.5, trim = TRUE) +
@@ -49,7 +49,9 @@ stressDistCompressionPlot <- q99StressDistCompressPlot +
     axis.text.x = element_text(size = 8),
     axis.text.y = element_text(size = 8)
   ) + 
-  scale_y_continuous(breaks = c(0.0, 0.2, 0.4)) +
+  #scale_y_continuous(breaks = c(0.0, 0.2, 0.4))
   scale_x_continuous(breaks = c(0, 10, 20, 30))
+  
+stressDistCompressionPlot
 
 ggsave("compression-stress-dist-plot.pdf", plot = stressDistCompressionPlot, path = here("figures"))
